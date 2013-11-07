@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,19 +6,102 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation = "horizontal"
     tools:context=".MainActivity" >
 
-     
-    <EditText  android:id="@+id/edit_message" 
-         android:layout_weight = "1"
-          android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_message"  />
-    <Button 
+    <Button
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "@string/button_send"
-        android:onClick="sendMessage" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="19dp"
+        android:layout_marginRight="24dp"
+        android:onClick="launch"
+        android:text="@string/Button" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_alignParentTop="true"
+        android:text="@string/species" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="45dp"
+            android:text="@string/human" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/mouse" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="17dp"
+            android:text="@string/rat" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_marginTop="45dp"
+        android:text="@string/area" />
+
+     <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+	
+	    <RadioButton
+	        android:id="@+id/radioButton5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="14dp"
+	        android:layout_marginTop="46dp"
+	        android:text="@string/brain" />
+
+	    <RadioButton
+	        android:id="@+id/radioButton4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="14dp"
+	        android:layout_marginTop="47dp"
+	        android:text="@string/spine" />
+	    
+	     <RadioButton
+         android:id="@+id/radioButton6"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="14dp"
+         android:layout_marginTop="48dp"
+         android:text="@string/eye" />
+	</RadioGroup>
+
+    
+
+</RelativeLayout>
