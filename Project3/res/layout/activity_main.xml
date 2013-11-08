@@ -17,6 +17,7 @@
         android:layout_marginBottom="19dp"
         android:layout_marginRight="24dp"
         android:onClick="launch"
+        android:enabled = "false"
         android:text="@string/Button" />
 
     <TextView
@@ -40,24 +41,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
+            android:checked = "false"
             android:layout_marginTop="45dp"
-            android:text="@string/human" />
+            android:text="@string/human" 
+            android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
+            android:checked = "false"
             android:layout_marginTop="16dp"
-            android:text="@string/mouse" />
+            android:text="@string/mouse" 
+            android:onClick="onRadioButtonClicked"/>
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
+            android:checked = "false"
             android:layout_marginTop="17dp"
-            android:text="@string/rat" />
+            android:text="@string/rat" 
+            android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
     <TextView
@@ -67,12 +74,14 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/radioGroup1"
         android:layout_marginTop="45dp"
-        android:text="@string/area" />
+        android:text="@string/area"
+        android:onClick="onRadioButtonClicked" />
 
      <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:checked = "false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:orientation="vertical" >
@@ -81,25 +90,31 @@
 	        android:id="@+id/radioButton5"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:checked = "false"
 	        android:layout_marginLeft="14dp"
 	        android:layout_marginTop="46dp"
-	        android:text="@string/brain" />
+	        android:text="@string/brain"
+	        android:onClick="onRadioButtonClicked" />
 
 	    <RadioButton
 	        android:id="@+id/radioButton4"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:checked = "false"
 	        android:layout_marginLeft="14dp"
 	        android:layout_marginTop="47dp"
-	        android:text="@string/spine" />
+	        android:text="@string/spine" 
+	        android:onClick="onRadioButtonClicked"/>
 	    
 	     <RadioButton
          android:id="@+id/radioButton6"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:checked = "false"
          android:layout_marginLeft="14dp"
          android:layout_marginTop="48dp"
-         android:text="@string/eye" />
+         android:text="@string/eye"
+         android:onClick="onRadioButtonClicked" />
 	</RadioGroup>
 
     
