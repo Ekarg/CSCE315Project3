@@ -3,8 +3,10 @@ package com.example.test;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 
 public class SecondActivity extends Activity {
@@ -13,6 +15,15 @@ public class SecondActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// Show the Up button in the action bar.
+		Intent intent = getIntent();
+		String species = intent.getStringExtra("Species");
+		String region = intent.getStringExtra("Region");
+		System.out.print("Species: " + species + "\n" + "Region: " + region + "\n");
+		setContentView(R.layout.second_activity_display);		
+		TextView s = (TextView)findViewById(R.id.textTitle1);
+		s.setText(species+":");
+		TextView r = (TextView)findViewById(R.id.textTitle2);
+		r.setText(region);
 		setupActionBar();
 	}
 

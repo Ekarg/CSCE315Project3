@@ -1,7 +1,5 @@
 package com.example.test;
 
-import com.example.test.R.id;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,17 +9,11 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 public class MainActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//Button launch = (Button) findViewById(R.id.button1);
-		//launch.setEnabled(true);
-		
-	
-		
-		
 	}
 
 	@Override
@@ -35,11 +27,54 @@ public class MainActivity extends Activity {
 	{  
 		 Intent intent = new Intent();
 		 intent.setClass(this,SecondActivity.class);
-		 startActivity(intent);
+		 RadioButton r1ga=(RadioButton)findViewById(R.id.radioButton1);
+		 RadioButton r2ga=(RadioButton)findViewById(R.id.radioButton2);
+		 RadioButton r3ga=(RadioButton)findViewById(R.id.radioButton3);
+		 RadioButton r1gb=(RadioButton)findViewById(R.id.radioButton4);
+		 RadioButton r2gb=(RadioButton)findViewById(R.id.radioButton5);
+		 RadioButton r3gb=(RadioButton)findViewById(R.id.radioButton6);
+		 String species = new String();
+		 if(r1ga.isChecked())
+		 {
+			 species = (String) r1ga.getText();
+		 }
 		 
-		
-	}  
 
+		 else if(r2ga.isChecked())
+		 {
+			 species = (String) r2ga.getText();
+		 }
+		 
+
+		 else if(r3ga.isChecked())
+		 {
+			 species = (String) r3ga.getText();
+		 }
+		 
+		 String region = new String();
+		 if(r1gb.isChecked())
+		 {
+			 region = (String) r1gb.getText();
+		 }
+		 
+
+		 else if(r2gb.isChecked())
+		 {
+			 region = (String) r2gb.getText();
+		 }
+		 
+
+		 else if(r3gb.isChecked())
+		 {
+			 region = (String) r3gb.getText();
+		 }
+		 
+		 System.out.print("Species: " + species + "\n" + "Region: " + region + "\n");
+		 intent.putExtra("Species", species);
+		 intent.putExtra("Region", region);
+		 startActivity(intent);
+	}  
+	
 	public void onRadioButtonClicked(View view)
 	{
 		Button launch = (Button) findViewById(R.id.button1);
@@ -68,7 +103,5 @@ public class MainActivity extends Activity {
 		}
 		
 	}
-	
-	
-}	
 
+}
