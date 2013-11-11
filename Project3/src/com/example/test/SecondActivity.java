@@ -21,7 +21,7 @@ public class SecondActivity extends Activity {
 		System.out.print("Species: " + species + "\n" + "Region: " + region + "\n");
 		setContentView(R.layout.second_activity_display);		
 		TextView s = (TextView)findViewById(R.id.textTitle1);
-		s.setText(species+":");
+		s.setText(species+"   --->");
 		TextView r = (TextView)findViewById(R.id.textTitle2);
 		r.setText(region);
 		setupActionBar();
