@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+C:\Users\Violeta\Documents\GitHub\CSCE315Project3\.metadata\.plugins\org.eclipse.jdt.core
+3779109278.index
+3681314991.index
+3052210005.index
