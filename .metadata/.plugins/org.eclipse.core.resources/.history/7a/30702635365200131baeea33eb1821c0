@@ -1,6 +1,9 @@
 package com.example.test;
 
 
+
+import com.example.android.opengl.MyGLSurfaceView;
+
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.app.Activity;
