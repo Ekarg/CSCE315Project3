@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -28,18 +29,18 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.Log;
+import android.view.View;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private static final String TAG = "MyGLRenderer";
     private Triangle mTriangle;
     private Square   mSquare;
-    private Line mline; 
-    private Line mline2; 
-    private Line mline3; 
-    private Line mline4; 
+    private ArrayList<Line> lines; 
+ 
     
     private final float[] mMVPMatrix = new float[16];
+    private final float[] mChangeScreenSize = new float[16];
     private final float[] mProjMatrix = new float[16];
     private final float[] mVMatrix = new float[16];
     private final float[] mRotationMatrix1 = new float[16];
@@ -55,33 +56,40 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public volatile float eyeZ; 
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
-
+    	lines = new ArrayList<Line>();
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
 
         mTriangle = new Triangle();
         mSquare   = new Square();
-        float test1[]= { -1.0f,  0.0f, 0.0f,   
-                1.0f, 0.0f, 0.0f, }; 
-        float test2[]= { 0.0f,  1.0f, 0.0f,   
-                0.0f, -1.0f, 0.0f, };
-        float test3[]= { 0.0f,  0.0f, 1.0f,   
-                0.0f, 0.0f, -1.0f, };
-       float test4[]= { 1.0f,  1.0f, 1.0f,   
-                -1.0f, -1.0f, -1.0f, };
+       
+       Data d = GetFile.getData();
+       ArrayList<Row> rows = d.getArray();
+       
+       for(int i=0; i < rows.size() - 1; i++){
+    	   Row row1 = rows.get(i);
+    	   Row row2 = rows.get(++i);
+    	  float test[] = { row1.getX(), row1.getY(), row1.getZ(),
+    			   			row2.getX(), row2.getY(), row2.getZ() };
+    	 /* float test[] = { 1.0f, 1.0f, 0.0f,
+    			   -1.0f, -1.0f, 0.0f };*/
+    	   row1. print();
+    	   Line newLine = new Line(test);
+    	   lines.add(newLine);
+       }
+       
+       /*
         mline = new Line(test1);
         mline2 = new Line(test2);
         mline3 = new Line(test3);
         mline4 = new Line(test4);
-        
+        */
     }
 
     @Override
     public void onDrawFrame(GL10 unused) {
-
         // Draw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-
         // Set the camera position (View matrix)
         Matrix.setLookAtM(mVMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0.0f, 0f, -1.0f, 0.0f);
 
@@ -97,17 +105,25 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.setRotateM(mRotationMatrix1, 0, mAngleX, 1.0f, 0.0f, 0.0f);
         // Combine the rotation matrix with the projection and camera view     
         Matrix.setRotateM(mRotationMatrix2, 0, mAngleY, 0.0f, 1.0f, 0.0f);
+        Matrix.orthoM(mChangeScreenSize, 0, -55, 55, -55, 55, -55, 55);
         Matrix.multiplyMM(mMVPMatrix, 0, mRotationMatrix1, 0, mRotationMatrix2, 0);
-       
+        
+        Matrix.multiplyMM(mMVPMatrix, 0, mChangeScreenSize, 0, mMVPMatrix, 0);
         // Draw triangle
     //   mTriangle.draw(mMVPMatrix);
         System.out.println("In onDrawFrame");
       // Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, -1.0f);
       // Matrix.multiplyMM(mMVPMatrix, 0, mRotationMatrix, 0, mMVPMatrix, 0);
+        for(int i = 0; i<lines.size(); i++) {
+        	System.out.println("Here!!!!!");
+        	lines.get(i).draw(mMVPMatrix);
+        }
+        /*
        mline.draw(mMVPMatrix);
        mline2.draw(mMVPMatrix);
        mline3.draw(mMVPMatrix);
        mline4.draw(mMVPMatrix);
+       */
     }
 
     @Override

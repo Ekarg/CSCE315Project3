@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 		try {
 			Queue<Float> _q = new LinkedList<Float>();
 			Data d = new Data();
-			InputStream ins = getResources().openRawResource(R.raw.data_small);
+			InputStream ins = getResources().openRawResource(R.raw.data_large);
 			//NOTE : Currently using data_small.xml
 			int hold;
 			char c;

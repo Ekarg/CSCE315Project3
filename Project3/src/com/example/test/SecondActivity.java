@@ -18,6 +18,7 @@ public class SecondActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		// Show the Up button in the action bar.
 		Intent intent = getIntent();
 		String species = intent.getStringExtra("Species");

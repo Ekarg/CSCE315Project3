@@ -38,4 +38,10 @@ public class Row {
 	   this.second_index = second_index;
    }
    
+   public void print() {
+	   
+	   System.out.println("X: " + x_val);
+	   
+   }
+   
 }
