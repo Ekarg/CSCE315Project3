@@ -1,3 +1,11 @@
+/* CSCE 315 - Fall 2013
+ * Contributors - Team G
+ * Wesley Tang
+ * Sidian Wu
+ * Violeta Torres
+ * Alejandro Vega
+ * Grace Coffman
+ */
 package com.example.test;
 
 import java.io.IOException;

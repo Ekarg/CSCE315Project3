@@ -1,3 +1,11 @@
+/* CSCE 315 - Fall 2013
+ * Contributors - Team G
+ * Wesley Tang
+ * Sidian Wu
+ * Violeta Torres
+ * Alejandro Vega
+ * Grace Coffman
+ */
 package com.example.test;
 
 
@@ -30,7 +38,7 @@ public class SecondActivity extends Activity {
 		TextView r = (TextView)findViewById(R.id.textTitle2);
 		r.setText(region);
 		setupActionBar();
-		mGLView = new MyGLSurfaceView(this);
+		mGLView = new OpenGlView(this);
 	    setContentView(mGLView);
 	}
 
@@ -63,27 +71,24 @@ public class SecondActivity extends Activity {
 
 }
 
-class MyGLSurfaceView extends GLSurfaceView {
+class OpenGlView extends GLSurfaceView {
 
-    private final MyGLRenderer mRenderer;
+    private final GLRenderer mRenderer;
 
-    public MyGLSurfaceView(Context context) {
+    public OpenGlView(Context context) {
         super(context);
 
         // Create an OpenGL ES 2.0 context.
         setEGLContextClientVersion(2);
 
         // Set the Renderer for drawing on the GLSurfaceView
-        mRenderer = new MyGLRenderer();
+        mRenderer = new GLRenderer();
         setRenderer(mRenderer);
 
         // Render the view only when there is a change in the drawing data
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
-    private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
-    private float mPreviousX;
-    private float mPreviousY;
     float x_down;
     float y_down;
     float x_up;
@@ -101,9 +106,11 @@ class MyGLSurfaceView extends GLSurfaceView {
     
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        // MotionEvent reports input details from the touch screen
-        // and other input controls. In this case, you are only
-        // interested in events where the touch position changed.
+        //When screen is swiped, rotate image in the correct direction, taking
+    	//into account the x,y, and z components. 
+    	//This is achieved by first finding the start and ending positions of the swipe
+    	//then finding the angle of the swipe so that the it can be decided how it is 
+    	//that the image needs to be rotated. 
 
                   
         switch (e.getAction()) {

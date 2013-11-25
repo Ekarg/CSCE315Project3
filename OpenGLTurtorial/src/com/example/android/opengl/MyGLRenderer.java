@@ -112,25 +112,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 unused, int width, int height) {
-        // Adjust the viewport based on geometry changes,
-        // such as screen rotation
-        GLES20.glViewport(0, 0, width, height);
-        System.out.println("In onSurfaceChanged");
-        float ratio = (float) width / height;
-        Matrix.setLookAtM(mVMatrix, 0, eyeX, eyeY, -3.0f, 0f, 0f, 0.0f, 0f, 1.0f, 0.0f);
-        // this projection matrix is applied to object coordinates
-        // in the onDrawFrame() method
-        Matrix.frustumM(mProjMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+       //Nothing needs to be done here. 
 
     }
 
     public static int loadShader(int type, String shaderCode){
 
-        // create a vertex shader type (GLES20.GL_VERTEX_SHADER)
-        // or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)
+    	//Code to set up shader and ability to use OpenGL in the app
+    	//Code found
         int shader = GLES20.glCreateShader(type);
-
-        // add the source code to the shader and compile it
         GLES20.glShaderSource(shader, shaderCode);
         GLES20.glCompileShader(shader);
 
@@ -373,7 +363,9 @@ class Square {
 }
 
 class Line {
-
+// Code taken from sample code for setting up OpenGL for android applications 
+// from www.developer.android.com
+	
     private final String vertexShaderCode =
         // This matrix member variable provides a hook to manipulate
         // the coordinates of the objects that use this vertex shader
