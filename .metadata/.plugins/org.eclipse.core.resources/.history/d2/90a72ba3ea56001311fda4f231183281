@@ -94,12 +94,10 @@ public class MainActivity extends Activity {
 	    	//		data_small.xml - First four Row items worth of data from data_LARGE.xml
 	    	//		data_large.xml - Contains the full 3975 Row items worth of data from a 
 	    	//						 a single file off of NeuroMorpho.org. 
-		
-		 
-		 try {
+			try {
 				Queue<Float> _q = new LinkedList<Float>();
 				Data d = new Data();
-				InputStream ins = getResources().openRawResource(R.raw.data_large); //issues may happen here
+				InputStream ins = getResources().openRawResource(R.raw.data_large);
 				//NOTE : Currently using data_small.xml
 				int hold;
 				char c;

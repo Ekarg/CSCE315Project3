@@ -26,7 +26,57 @@ public class MainActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+		//START XML PARSE
+    	// File Usage:
+    	//		data_small.xml - First four Row items worth of data from data_LARGE.xml
+    	//		data_large.xml - Contains the full 3975 Row items worth of data from a 
+    	//						 a single file off of NeuroMorpho.org. 
+		try {
+			Queue<Float> _q = new LinkedList<Float>();
+			Data d = new Data();
+			InputStream ins = getResources().openRawResource(R.raw.data_large);
+			//NOTE : Currently using data_small.xml
+			int hold;
+			char c;
+			hold = ins.read();
+			while(true) {
+				if (hold == -1) {
+					break;
+				}
+			   c=(char)hold;
+			   if (c == '<') {
+				   String temp = "";
+				   for (int i = 0; i < 5; ++i) {
+					   hold = ins.read();
+					   c=(char)hold;
+					   temp += c;
+				   }
+				   if (temp.equals("item>")) {
+					   String number = "";
+					   hold = ins.read();
+					   c=(char)hold;
+					   while (c != '<') {
+						   number += c;
+						   hold = ins.read();
+						   c=(char)hold;
+					   }					   
+					   float parsed_float = Float.parseFloat(number);
+					   _q.add(parsed_float);
+				   }
+			   }
+			   hold = ins.read();
+			}
+			ArrayList<Row> _a = new ArrayList<Row>();
+			while (!_q.isEmpty()) {
+				_a.add(new Row((int)Math.round(_q.remove()), (int)Math.round(_q.remove()), _q.remove(), _q.remove(), _q.remove(), _q.remove(), (int)Math.round(_q.remove())));
+			}
+			d.setArray(_a);
+			GetFile.setData(d);
+			System.out.println("SUCCESS: XML PARSED\n");
+		} catch (IOException e) {
+			System.out.println("IOException\n");
+		}
+		//END XML PARSE
 	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -94,12 +144,10 @@ public class MainActivity extends Activity {
 	    	//		data_small.xml - First four Row items worth of data from data_LARGE.xml
 	    	//		data_large.xml - Contains the full 3975 Row items worth of data from a 
 	    	//						 a single file off of NeuroMorpho.org. 
-		
-		 
-		 try {
+			try {
 				Queue<Float> _q = new LinkedList<Float>();
 				Data d = new Data();
-				InputStream ins = getResources().openRawResource(R.raw.data_large); //issues may happen here
+				InputStream ins = getResources().openRawResource(R.raw.data_large);
 				//NOTE : Currently using data_small.xml
 				int hold;
 				char c;

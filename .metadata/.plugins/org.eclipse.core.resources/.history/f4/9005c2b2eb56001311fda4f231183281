@@ -39,7 +39,7 @@ public class SecondActivity extends Activity {
 		r.setText(region);
 		mGLView = new OpenGlView(this);
 	    setContentView(mGLView);
-	    setupActionBar();
+	    //setupActionBar();
 	}
 
 	/**

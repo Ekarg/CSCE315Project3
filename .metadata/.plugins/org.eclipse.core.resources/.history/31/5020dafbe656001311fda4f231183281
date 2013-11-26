@@ -37,9 +37,9 @@ public class SecondActivity extends Activity {
 		s.setText(species+"   --->");
 		TextView r = (TextView)findViewById(R.id.textTitle2);
 		r.setText(region);
+		setupActionBar();
 		mGLView = new OpenGlView(this);
 	    setContentView(mGLView);
-	    setupActionBar();
 	}
 
 	/**
