@@ -37,17 +37,17 @@ public final class R {
         public static final int second=0x7f060000;
     }
     public static final class raw {
-        public static final int 1=0x7f040000;
-        public static final int 2=0x7f040001;
-        public static final int 3=0x7f040002;
-        public static final int 4=0x7f040003;
-        public static final int 5=0x7f040004;
-        public static final int 6=0x7f040005;
-        public static final int 7=0x7f040006;
-        public static final int 8=0x7f040007;
-        public static final int 9=0x7f040008;
-        public static final int data_large=0x7f040009;
-        public static final int data_small=0x7f04000a;
+        public static final int data_large=0x7f040000;
+        public static final int data_small=0x7f040001;
+        public static final int human_brain=0x7f040002;
+        public static final int human_eye=0x7f040003;
+        public static final int human_spine=0x7f040004;
+        public static final int mouse_brain=0x7f040005;
+        public static final int mouse_eye=0x7f040006;
+        public static final int mouse_spine=0x7f040007;
+        public static final int rat_brain=0x7f040008;
+        public static final int rat_eye=0x7f040009;
+        public static final int rat_spine=0x7f04000a;
     }
     public static final class string {
         public static final int Button=0x7f050003;

@@ -10,6 +10,7 @@ package com.example.test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -17,6 +18,7 @@ import java.util.Queue;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources.NotFoundException;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -89,6 +91,7 @@ public class MainActivity extends Activity {
 		 intent.putExtra("Species", species);
 		 intent.putExtra("Region", region);
 		 
+		 
 		//START XML PARSE
 	    	// File Usage:
 	    	//		data_small.xml - First four Row items worth of data from data_LARGE.xml
@@ -99,7 +102,39 @@ public class MainActivity extends Activity {
 		 try {
 				Queue<Float> _q = new LinkedList<Float>();
 				Data d = new Data();
-				InputStream ins = getResources().openRawResource(R.raw.data_large); //issues may happen here
+				//String field = species + "_" + region;
+				
+				//Field f = R.raw.class.getDeclaredField(field);
+				int value = 0;
+				if(species.compareTo("Human") == 0){
+					if(region.compareTo("Brain") == 0)
+						value = R.raw.human_brain;
+					else if(region.compareTo("Spine") == 0)
+						value = R.raw.human_spine;
+					else if(region.compareTo("Eye") == 0)
+						value = R.raw.human_eye;
+				}
+				else if(species.compareTo("Mouse") == 0){
+					if(region.compareTo("Brain") == 0)
+						value = R.raw.mouse_brain;
+					else if(region.compareTo("Spine") == 0)
+						value = R.raw.mouse_spine;
+					else if(region.compareTo("Eye") == 0)
+						value = R.raw.mouse_eye;
+				}
+				else if(species.compareTo("Rat") == 0){
+					if(region.compareTo("Brain") == 0)
+						value = R.raw.rat_brain;
+					else if(region.compareTo("Spine") == 0)
+						value = R.raw.rat_spine;
+					else if(region.compareTo("Eye") == 0)
+						value = R.raw.rat_spine;
+				}
+					
+			
+				InputStream ins = getResources().openRawResource(value); //issues may happen here
+			//	InputStream ins = getResources().openRawResource(f.getInt(null));
+				
 				//NOTE : Currently using data_small.xml
 				int hold;
 				char c;
@@ -142,6 +177,13 @@ public class MainActivity extends Activity {
 				System.out.println("IOException\n");
 			}
 			//END XML PARSE
+	catch (NotFoundException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} catch (IllegalArgumentException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} 
 		 
 		 
 		 
