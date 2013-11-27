@@ -31,7 +31,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
     private static final String TAG = "GLRenderer";
     private ArrayList<Line> lines; 
- 
+    private Line x_axis; 
+    private Line y_axis;
+    private Line z_axis; 
     
     private final float[] finalMatrix = new float[16];
     private final float[] mChangeScreenSize = new float[16];
@@ -82,10 +84,24 @@ public class GLRenderer implements GLSurfaceView.Renderer {
     	   }
     	   float test[] = { row1.getX(), row1.getY(), row1.getZ(),
     			   			0, 0, 0 };
-    	   row1. print();
     	   Line newLine = new Line(test);
     	   lines.add(newLine);
        }
+       float x[] = { -largest, 0, 0,
+	   			largest, 0, 0 };
+       float y[] = {0, -largest, 0,
+	   			0, largest, 0 };
+       float z[] = { 0, 0, -largest,
+    		   0, 0, largest};
+       x_axis = new Line(x);
+       float x_color[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+       x_axis.color= x_color;
+       y_axis = new Line(y);
+       float y_color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+       y_axis.color= y_color;
+       z_axis = new Line(z);
+       float z_color[] = { 0.0f, 0.0f, 1.0f, 1.0f };
+       z_axis.color= z_color;
     }
 
     @Override
@@ -111,6 +127,10 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         for(int i = 0; i<lines.size(); i++) {
         	lines.get(i).draw(finalMatrix);
         }
+        //Add axis
+        x_axis.draw(finalMatrix);
+        y_axis.draw(finalMatrix);
+        z_axis.draw(finalMatrix);
     }
 
   

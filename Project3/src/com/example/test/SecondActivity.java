@@ -54,18 +54,6 @@ public class SecondActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -117,8 +105,6 @@ class OpenGlView extends GLSurfaceView {
             case MotionEvent.ACTION_DOWN:
             	  x_down = e.getX();
                   y_down = e.getY();
-                  System.out.println("X1: " + x_down);
-                  System.out.println("Y1: "+ y_down);
             break;
             case MotionEvent.ACTION_UP:
             	 x_up = e.getX();

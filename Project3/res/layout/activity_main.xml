@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
             android:checked = "false"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="25dp"
             android:text="@string/human" 
             android:onClick="onRadioButtonClicked"/>
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
             android:checked = "false"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="@string/mouse" 
             android:onClick="onRadioButtonClicked"/>
 
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
             android:checked = "false"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="10dp"
             android:text="@string/rat" 
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/radioGroup1"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         android:text="@string/area"
         android:onClick="onRadioButtonClicked" />
 
@@ -81,30 +81,29 @@
         android:id="@+id/radioGroup2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:checked = "false"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:orientation="vertical" >
-	
-	    <RadioButton
-	        android:id="@+id/radioButton5"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:checked = "false"
-	        android:layout_marginLeft="14dp"
-	        android:layout_marginTop="46dp"
-	        android:text="@string/brain"
-	        android:onClick="onRadioButtonClicked" />
 
 	    <RadioButton
 	        android:id="@+id/radioButton4"
 	        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:checked = "false"
+            android:layout_marginTop="180dp"
+	        android:onClick="onRadioButtonClicked"
+	        android:text="@string/spine" />
+
+	    <RadioButton
+	        android:id="@+id/radioButton5"
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:checked = "false"
 	        android:layout_marginLeft="14dp"
-	        android:layout_marginTop="47dp"
-	        android:text="@string/spine" 
-	        android:onClick="onRadioButtonClicked"/>
+	        android:layout_marginTop="10dp"
+	        android:checked="false"
+	        android:onClick="onRadioButtonClicked"
+	        android:text="@string/brain" />
 	    
 	     <RadioButton
          android:id="@+id/radioButton6"
@@ -112,7 +111,7 @@
          android:layout_height="wrap_content"
          android:checked = "false"
          android:layout_marginLeft="14dp"
-         android:layout_marginTop="48dp"
+          android:layout_marginTop="10dp"
          android:text="@string/eye"
          android:onClick="onRadioButtonClicked" />
 	</RadioGroup>
