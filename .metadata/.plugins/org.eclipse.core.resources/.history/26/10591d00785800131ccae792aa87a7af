@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
 	catch (NotFoundException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
-	} catch (IllegalArgumentException e) {
+} catch (IllegalArgumentException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 } 

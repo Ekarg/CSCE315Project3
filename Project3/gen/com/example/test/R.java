@@ -19,8 +19,8 @@ public final class R {
         public static final int radioButton1=0x7f070003;
         public static final int radioButton2=0x7f070004;
         public static final int radioButton3=0x7f070005;
-        public static final int radioButton4=0x7f070009;
-        public static final int radioButton5=0x7f070008;
+        public static final int radioButton4=0x7f070008;
+        public static final int radioButton5=0x7f070009;
         public static final int radioButton6=0x7f07000a;
         public static final int radioGroup1=0x7f070002;
         public static final int radioGroup2=0x7f070007;
@@ -42,12 +42,21 @@ public final class R {
         public static final int eight=0x7f040002;
         public static final int five=0x7f040003;
         public static final int four=0x7f040004;
-        public static final int nine=0x7f040005;
-        public static final int one=0x7f040006;
-        public static final int seven=0x7f040007;
-        public static final int six=0x7f040008;
-        public static final int three=0x7f040009;
-        public static final int two=0x7f04000a;
+        public static final int human_brain=0x7f040005;
+        public static final int human_eye=0x7f040006;
+        public static final int human_spine=0x7f040007;
+        public static final int mouse_brain=0x7f040008;
+        public static final int mouse_eye=0x7f040009;
+        public static final int mouse_spine=0x7f04000a;
+        public static final int nine=0x7f04000b;
+        public static final int one=0x7f04000c;
+        public static final int rat_brain=0x7f04000d;
+        public static final int rat_eye=0x7f04000e;
+        public static final int rat_spine=0x7f04000f;
+        public static final int seven=0x7f040010;
+        public static final int six=0x7f040011;
+        public static final int three=0x7f040012;
+        public static final int two=0x7f040013;
     }
     public static final class string {
         public static final int Button=0x7f050003;
