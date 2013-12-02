@@ -111,6 +111,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
        
         Matrix.setLookAtM(initialMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0.0f, 0f, -1.0f, 0.0f);
 
+
       
         Matrix.setRotateM(mRotationMatrix1, 0, mAngleX, 1.0f, 0.0f, 0.0f);
         

@@ -25,7 +25,7 @@ public class GetFile {
 		for (Row s : data.getArray()) {
 			System.out.println(s.getIndex());
 			System.out.println(s.getBranch());
-			System.out.println(s.getX());
+			System.out.println(s.getX()); 
 			System.out.println(s.getY());
 			System.out.println(s.getZ());
 			System.out.println(s.getRadius());

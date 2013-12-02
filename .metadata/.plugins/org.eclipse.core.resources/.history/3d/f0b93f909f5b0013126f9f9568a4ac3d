@@ -111,6 +111,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
        
         Matrix.setLookAtM(initialMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0.0f, 0f, -1.0f, 0.0f);
 
+        
+        Matrix.multiplyMM(finalMatrix, 0, mProjMatrix, 0, initialMatrix, 0);
+
       
         Matrix.setRotateM(mRotationMatrix1, 0, mAngleX, 1.0f, 0.0f, 0.0f);
         
@@ -124,8 +127,8 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         //Color function called here
         
         for(int i = 0; i<lines.size(); i++) {
-        	//lines.get(i).color = // set color (array of floats)
-        	lines.get(i).draw(finalMatrix);
+        	lines.get(i).color = // set color (array of floats)
+        	//lines.get(i).draw(finalMatrix);
         }
         //Add axis
         x_axis.draw(finalMatrix);

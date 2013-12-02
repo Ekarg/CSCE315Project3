@@ -31,9 +31,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
     private static final String TAG = "GLRenderer";
     private ArrayList<Line> lines; 
-    private Line x_axis; // x axis for the compass rose 
-    private Line y_axis; // y axis for the compass rose
-    private Line z_axis; // z axis for the compass rose 
+    private Line x_axis; 
+    private Line y_axis;
+    private Line z_axis; 
     
     private final float[] finalMatrix = new float[16];
     private final float[] mChangeScreenSize = new float[16];
@@ -43,9 +43,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
     private final float[] mRotationMatrix2 = new float[16];
 
     // Declare as volatile because we are updating it from another thread
-    public volatile float mAngleX; //how the image should be rotated in the x direction
-    public volatile float mAngleY; //how the image should be rotated in the y direction
-    public volatile float mAngleZ; //how the image should be rotated in the z direction
+    public volatile float mAngleX;
+    public volatile float mAngleY;
+    public volatile float mAngleZ;
     public volatile float eyeX; 
     public volatile float eyeY; 
     public volatile float eyeZ; 
@@ -111,6 +111,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
        
         Matrix.setLookAtM(initialMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0.0f, 0f, -1.0f, 0.0f);
 
+        
+        Matrix.multiplyMM(finalMatrix, 0, mProjMatrix, 0, initialMatrix, 0);
+
       
         Matrix.setRotateM(mRotationMatrix1, 0, mAngleX, 1.0f, 0.0f, 0.0f);
         
@@ -120,11 +123,8 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         
         Matrix.multiplyMM(finalMatrix, 0, mChangeScreenSize, 0, finalMatrix, 0);
        
-       
-        //Color function called here
-        
+        System.out.println("In onDrawFrame");
         for(int i = 0; i<lines.size(); i++) {
-        	//lines.get(i).color = // set color (array of floats)
         	lines.get(i).draw(finalMatrix);
         }
         //Add axis
