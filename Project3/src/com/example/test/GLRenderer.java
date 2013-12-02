@@ -35,6 +35,12 @@ public class GLRenderer implements GLSurfaceView.Renderer {
     private Line y_axis; // y axis for the compass rose
     private Line z_axis; // z axis for the compass rose 
     
+    //box lines
+    private Line l_1;
+    private Line l_2;
+    private Line l_3;
+    private Line l_4;
+    
     private final float[] finalMatrix = new float[16];
     private final float[] mChangeScreenSize = new float[16];
     private final float[] mProjMatrix = new float[16];
@@ -52,7 +58,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
     public int largest;
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
-    	lines = new ArrayList<Line>();
+            lines = new ArrayList<Line>();
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
 
@@ -61,38 +67,40 @@ public class GLRenderer implements GLSurfaceView.Renderer {
        ArrayList<Row> rows = d.getArray();
        /*
        for(int i=0; i < rows.size() - 1; i++){
-    	   Row row1 = rows.get(i);
-    	   Row row2 = rows.get(++i);
-    	  float test[] = { row1.getX(), row1.getY(), row1.getZ(),
-    			   			row2.getX(), row2.getY(), row2.getZ() };
-    	   row1. print();
-    	   Line newLine = new Line(test);
-    	   lines.add(newLine);
+               Row row1 = rows.get(i);
+               Row row2 = rows.get(++i);
+              float test[] = { row1.getX(), row1.getY(), row1.getZ(),
+                                                       row2.getX(), row2.getY(), row2.getZ() };
+               row1. print();
+               Line newLine = new Line(test);
+               lines.add(newLine);
        }
        */
        largest = 0;
        for(int i=0; i < rows.size()/2; i++){
-    	   Row row1 = rows.get(i);
-    	   if(Math.abs(row1.getX())>largest) {
-    		   largest = (int)Math.abs(row1.getX());
-    	   }
-    	   if(Math.abs(row1.getY())>largest) {
-    		   largest = (int)Math.abs(row1.getY());
-    	   }
-    	   if(Math.abs(row1.getZ())>largest) {
-    		   largest = (int)Math.abs(row1.getZ());
-    	   }
-    	   float test[] = { row1.getX(), row1.getY(), row1.getZ(),
-    			   			0, 0, 0 };
-    	   Line newLine = new Line(test);
-    	   lines.add(newLine);
+               Row row1 = rows.get(i);
+               if(Math.abs(row1.getX())>largest) {
+                       largest = (int)Math.abs(row1.getX());
+               }
+               if(Math.abs(row1.getY())>largest) {
+                       largest = (int)Math.abs(row1.getY());
+               }
+               if(Math.abs(row1.getZ())>largest) {
+                       largest = (int)Math.abs(row1.getZ());
+               }
+               float test[] = { row1.getX(), row1.getY(), row1.getZ(),
+                                                       0, 0, 0 };
+               Line newLine = new Line(test);
+               lines.add(newLine);
        }
        float x[] = { -largest, 0, 0,
-	   			largest, 0, 0 };
+                                   largest, 0, 0 };
        float y[] = {0, -largest, 0,
-	   			0, largest, 0 };
+                                   0, largest, 0 };
        float z[] = { 0, 0, -largest,
-    		   0, 0, largest};
+                       0, 0, largest};
+       float h[] = {-((float)3/8) * largest, ((float)7 / 8) * largest, 0,
+    		   -((float)3/8) * largest, ((float)5/2) * largest, 0};
        x_axis = new Line(x);
        float x_color[] = { 0.0f, 0.0f, 0.0f, 1.0f };
        x_axis.color= x_color;
@@ -102,6 +110,10 @@ public class GLRenderer implements GLSurfaceView.Renderer {
        z_axis = new Line(z);
        float z_color[] = { 0.0f, 0.0f, 1.0f, 1.0f };
        z_axis.color= z_color;
+       
+       l_1 = new Line(h);
+       float h_color[] = {0.0f, 0.0f, 0.0f, 1.0f};
+       l_1.color = h_color;
     }
 
     @Override
@@ -110,7 +122,8 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
        
         Matrix.setLookAtM(initialMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0.0f, 0f, -1.0f, 0.0f);
-
+      //  Matrix.multiplyMM(finalMatrix, 0, initialMatrix, 0, finalMatrix, 0);
+      //  l_1.draw(finalMatrix);
       
         Matrix.setRotateM(mRotationMatrix1, 0, mAngleX, 1.0f, 0.0f, 0.0f);
         
@@ -121,16 +134,18 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMM(finalMatrix, 0, mChangeScreenSize, 0, finalMatrix, 0);
        
        
-        //Color function called here
+        float [] newColor = this.changeColor();
         
         for(int i = 0; i<lines.size(); i++) {
-        	//lines.get(i).color = // set color (array of floats)
-        	lines.get(i).draw(finalMatrix);
+                //lines.get(i).color = // set color (array of floats)
+        		lines.get(i).setColor(newColor);
+                lines.get(i).draw(finalMatrix);
         }
         //Add axis
         x_axis.draw(finalMatrix);
         y_axis.draw(finalMatrix);
         z_axis.draw(finalMatrix);
+        l_1.draw(mChangeScreenSize);
     }
 
   
@@ -167,11 +182,27 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         }
     }
 
-	@Override
-	public void onSurfaceChanged(GL10 arg0, int arg1, int arg2) {
-		// No code required here as of 11/24/13
-		
-	}
+        @Override
+    public void onSurfaceChanged(GL10 arg0, int arg1, int arg2) {
+            // No code required here as of 11/24/13
+            
+    }
+    
+    private float[] changeColor(){
+    	float[] colorArray = new float[4];
+    	//int minimum = 1;
+    	//int maximum = 20;
+    	//float r = 1 / (float)(minimum + (Math.random() * maximum)); 
+    	//float g = 1 / (float)(minimum + (Math.random() * maximum)); 
+    	//float b = 1 / (float)(minimum + (Math.random() * maximum)); 
+    	
+    	colorArray[0] = (float) Math.random();
+    	colorArray[1] = (float) Math.random();
+    	colorArray[2] = (float) Math.random();
+    	colorArray[3] = 1.0f;
+    	return colorArray;
+    }
+        
 }
 
 class Line {
@@ -209,13 +240,17 @@ class Line {
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
     float color[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+    
+    public void setColor(float[] newColor){
+    	this.color = newColor;
+    }
 
     public Line(float coords[]) {
-    	lineCoords = coords;
+            lineCoords = coords;
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer bb = ByteBuffer.allocateDirect(
         // (# of coordinate values * 4 bytes per float)
-        		lineCoords.length * 4);
+                        lineCoords.length * 4);
         bb.order(ByteOrder.nativeOrder());
         vertexBuffer = bb.asFloatBuffer();
         vertexBuffer.put(lineCoords);
