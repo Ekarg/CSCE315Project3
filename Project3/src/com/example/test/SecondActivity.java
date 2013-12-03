@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 
 public class SecondActivity extends Activity {
@@ -103,12 +104,25 @@ class OpenGlView extends GLSurfaceView {
                   
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
+<<<<<<< HEAD
+            	 x_up = x_down = e.getX();
+                 y_up = y_down = e.getY();
+                  System.out.println("X1: " + x_down);
+                  System.out.println("Y1: "+ y_down);
+=======
             	  x_down = e.getX();
                   y_down = e.getY();
+>>>>>>> 927e195a4bb5936b79673d726d7ca188cc09f3f4
             break;
+           // case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_UP:
+            	 x_down = x_up;
+            	 y_down = y_up;
+            	 
             	 x_up = e.getX();
                  y_up = e.getY();
+                 Rect outRect = null;
+				// Display display = 
                  
                  float y_diff = y_up - y_down;
                  float x_diff = x_up - x_down;
